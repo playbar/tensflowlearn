@@ -12,3 +12,4 @@ checkpoint
 htmlcov
 mnist
 test*tflearn*
+.idea
