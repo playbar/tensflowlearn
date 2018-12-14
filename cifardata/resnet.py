@@ -191,5 +191,5 @@ sess.run(init)
 num_batches = 100
 time_tensorflow_run(sess, net, "Forward")
 
-
+print("seccess")
 
