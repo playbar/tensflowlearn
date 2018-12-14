@@ -23,7 +23,8 @@ import os
 
 import tensorflow as tf
 
-import cifar10_input
+# import cifar10_input
+from cifardata.cifar10 import read_cifar10
 
 
 class CIFAR10InputTest(tf.test.TestCase):
@@ -49,7 +50,7 @@ class CIFAR10InputTest(tf.test.TestCase):
       q = tf.FIFOQueue(99, [tf.string], shapes=())
       q.enqueue([filename]).run()
       q.close().run()
-      result = cifar10_input.read_cifar10(q)
+      result = read_cifar10(q)
 
       for i in range(3):
         key, label, uint8image = sess.run([

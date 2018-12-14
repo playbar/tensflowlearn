@@ -24,10 +24,12 @@ print(testlabel.shape,);
 nsample = 5;
 randidx = np.random.randint(trainimg.shape[0], size = nsample )
 
+
 for i in randidx:
+    print(i)
     curr_img = np.reshape(trainimg[i, :], (28, 28))
     curr_label = np.argmax(trainlabel[i, :])
-    plt.matshow(curr_img, cmap=plt.get_cmap('gray'))
+    plt.matshow(curr_img, cmap=plt.get_cmap('gray_r'))
     plt.title("" + str(i) + "th Training Data" + "label is" + str(curr_label))
     print("" + str(i) + "th Training Data" + "label is" + str(curr_label))
     plt.show()

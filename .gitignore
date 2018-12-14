@@ -13,3 +13,4 @@ htmlcov
 mnist
 test*tflearn*
 .idea
+examples/images
