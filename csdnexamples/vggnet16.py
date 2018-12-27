@@ -19,9 +19,8 @@ def convLayer(x, name, kh, kw, n_out, dh, dw, p):
     # 设置scope
     with tf.name_scope(name) as scope:
         # 卷积核参数
-        kernel = tf.get_variable(scope+'w',
-        shape=[kh, kw, n_in, n_out], dtype=tf.float32,
-        initializer=tf.contrib.layers.xavier_initializer_conv2d())
+        kernel = tf.get_variable(scope+'w',shape=[kh, kw, n_in, n_out], dtype=tf.float32,
+                                 initializer=tf.contrib.layers.xavier_initializer_conv2d())
         # 卷积处理
         conv = tf.nn.conv2d(x, kernel, (1, dh, dw, 1), padding='SAME')
         # biases：初始化

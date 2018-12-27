@@ -133,8 +133,8 @@ if __name__ == '__main__':
     imgs = tf.placeholder(tf.float32, [None, 224, 224, 3])
     # VGGNet16模型
     vgg = VGGNet16(imgs, 'vgg16_weights.npz', sess)
-    # img = cv2.imread('cat.jpg')
-    img = cv2.imread('crane.png')
+    img = cv2.imread('car.jpg')
+    # img = cv2.imread('crane.png')
     img1 = imresize(img, (224, 224))
     prob = sess.run(vgg.probs, feed_dict={vgg.imgs: [img1]})[0]
     # 输出概率最高的前5种类别,以及对应的概率大小
