@@ -61,19 +61,22 @@ for i in range(1000):
         print('Loss = ' + str(sess.run(loss, feed_dict={x_data: x, y_target: y})))
 
 KValue  = sess.run(K);
+print( "K %d" %KValue)
 
-best_fit = [];
-for i in x_vals:
-    val = KValue * i + 3;
-    print(val)
-    best_fit.append(val)
+best_fit = np.linspace(0, 0, data_amount)
 
-print(x_vals)
-print(y_vals)
-print(best_fit)
+for i in range(data_amount):
+    val = KValue * x_vals[i] + 3;
+    # print(val)
+    best_fit[i] = val
+
+
+# print(x_vals)
+# print(y_vals)
+# print(best_fit)
 
 plt.plot(x_vals, y_vals, 'o', label='Data')
-plt.plot(x_vals, y_vals, 'r-', label='Base fit line')
+plt.plot(x_vals, best_fit, 'r-', label='Base fit line')
 # plt.plot(loss_vec, 'k-')
 plt.title('Batch Look Loss')
 plt.xlabel('Generation')
