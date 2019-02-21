@@ -69,6 +69,58 @@ def save_model():
 
     sess.close();
 
+def load_model():
+    tf.reset_default_graph();
+    a = tf.Variable(0);
+    c = tf.Variable(0, name="my_variable")
+    saver = tf.train.Saver();
+
+    sess = tf.Session();
+    saver.restore(sess, './my_model.ckpt')
+    print("a", sess.run(a))
+    print("my_variable", sess.run(c))
+
+    sess.close();
+
+def summary():
+    #tensorboard --logdir=/tmp/summary
+    sess = tf.Session();
+    a = tf.Variable(5, name='a')
+    b = tf.Variable(10, name='b')
+
+    c = tf.multiply( a, b, name='result')
+    sess.run(tf.global_variables_initializer())
+    print(sess.run(c))
+    fw = tf.summary.FileWriter("/tmp/summary", sess.graph);
+
+
+    sess.close();
+
+
+def summary_1() :
+    with tf.name_scope('primitives') as scope:
+        a = tf.Variable(5, name='a')
+        b = tf.Variable(10, name='10')
+
+    with tf.name_scope("fancy_pants_procedure") as scope:
+        c = tf.multiply( a, b )
+
+        with tf.name_scope('very_mean_reduction') as scope:
+            d = tf.reduce_mean([a, b, c])
+
+        e = tf.add( c, d )
+
+    with tf.name_scope('not_so_fancy_procedure') as scope:
+        d = tf.add( a, b )
+
+    with tf.Session() as sess:
+
+        sess.run(tf.global_variables_initializer())
+        print(sess.run( c))
+        print(sess.run(e ))
+
+        fw = tf.summary.FileWriter('/tmp/summary', sess.graph )
+
 
 print("test1")
 test1();
@@ -76,5 +128,11 @@ print("test2")
 test2();
 print("test3")
 test3();
-print("save1")
+print("save_model")
 save_model();
+print("load_model")
+load_model();
+# print("summary")
+# summary();
+print("summary_1")
+summary_1();
