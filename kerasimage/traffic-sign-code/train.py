@@ -38,7 +38,7 @@ def args_parse():
 
 # initialize the number of epochs to train for, initial learning rate,
 # and batch size
-EPOCHS = 35
+EPOCHS = 2
 INIT_LR = 1e-3
 BS = 32
 CLASS_NUM = 62
@@ -109,7 +109,7 @@ def train(aug,trainX,trainY,testX,testY,args):
     
 
 
-#python train.py --dataset_train ../../traffic-sign/train --dataset_test ../../traffic-sign/test --model traffic_sign.model
+#python train.py --dataset_train ../data/traffic-sign/train --dataset_test ../data/traffic-sign/test --model traffic_sign.model
 if __name__=='__main__':
     args = args_parse()
     train_file_path = args["dataset_train"]

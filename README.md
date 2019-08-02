@@ -123,3 +123,11 @@ For more info: *[Contribute to TFLearn](http://tflearn.org/contributions)*.
 ## License
 
 MIT License
+
+
+#安装命令
+
+- 重命名 tensorflow-1.12.0-cp36-cp36m-macosx_10_11_x86_64.whl 为tensorflow-1.12.0-py3-none-macosx_10_11_x86_64.whl
+否则出现 is not a supported wheel on this platform错误
+- pip install --ignore-installed --upgrade  tensorflow-1.12.0-py3-none-macosx_10_11_x86_64.whl
+

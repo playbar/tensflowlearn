@@ -12,18 +12,18 @@ data_amount = 101 # 数据数量
 batch_size = 25 # 批量大小
 
 # 造数据 y=Kx+3 (K=5)
-x_vals = np.linspace(0, 200, data_amount)
+x_vals = np.linspace(0, 100, data_amount)
 
-# print(x_vals)
+print(x_vals)
 
-y_vals = np.multiply(x_vals, 5)
+y_vals = np.multiply(x_vals, 1)
 # print( y_vals )
 y_vals = np.add(y_vals, 3)
 
 # print( y_vals)
 
 # 生成一个N(0,15)的正态分布一维数组
-y_offset_vals = np.random.normal(0, 15, data_amount)
+y_offset_vals = np.random.normal(10, 20, data_amount)
 print(y_offset_vals)
 y_vals = np.add(y_vals, y_offset_vals) # 为了有意使的y值有所偏差
 
@@ -42,15 +42,17 @@ loss = tf.reduce_mean(tf.square(y_target - calcY))
 init = tf.global_variables_initializer()
 sess.run(init)
 
-my_opt = tf.train.GradientDescentOptimizer(0.0000005)
+my_opt = tf.train.GradientDescentOptimizer(0.00005)
 train_step = my_opt.minimize(loss) # 目的就是使损失值最小
 
 loss_vec = [] #保存每次迭代的损失值，为了图形化
 
-for i in range(1000):
+for i in range(100):
     rand_index = np.random.choice(data_amount, size=batch_size)
+    # print(rand_index);
     x = np.transpose([x_vals[rand_index]])
     y = np.transpose([y_vals[rand_index]])
+    # print(f'x: {x}, y:{y}');
     sess.run(train_step, feed_dict={x_data: x, y_target: y})
 
     tmp_loss = sess.run(loss, feed_dict={x_data: x, y_target: y})
@@ -77,6 +79,7 @@ for i in range(data_amount):
 
 plt.plot(x_vals, y_vals, 'o', label='Data')
 plt.plot(x_vals, best_fit, 'r-', label='Base fit line')
+plt.plot(x_vals, y_offset_vals, 'g-', label='y_offset_vals')
 # plt.plot(loss_vec, 'k-')
 plt.title('Batch Look Loss')
 plt.xlabel('Generation')
